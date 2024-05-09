@@ -18,10 +18,24 @@ on('onClientGameTypeStart', () => {
   exports.spawnmanager.forceRespawn()
 });
 
-RegisterCommand('gerogay', (source, args) => {
-  let vehicleName = args[1] || "akuma";
+RegisterCommand('gerogay', async (source, args) => {
+  let model = "adder";
+  if (args.length > 0) {
+    model = args[0].toString();
+  }
 
-  RequestModel(vehicleName);
+  const hash = GetHashKey(model);
+  if (!IsModelInCdimage(hash) || !IsModelAVehicle(hash)) {
+    emit('chat:addMessage', {
+      args: [`It might have been a good thing that you tried to spawn a ${model}. Who even wants their spawning to actually ^*succeed?`]
+    });
+    return;
+  }
+
+  RequestModel(hash);
+  while (!HasModelLoaded(hash)) {
+    await Delay(500);
+  }
 
   const playerPed = PlayerPedId()
   const [playerX, playerY, playerZ] = GetEntityCoords(playerPed);

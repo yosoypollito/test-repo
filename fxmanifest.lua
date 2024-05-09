@@ -7,4 +7,4 @@ version '1.0.0'
 
 resource_type 'gametype' { name = 'My awesome game type!' }
 
-client_script 'mymode_client.ts'
+client_script 'mymode_client.js'

@@ -1,5 +1,14 @@
+/// <reference path="node_modules/@citizenfx/client/index.d.ts" />
+//
 on('onClientGameTypeStart', () => {
   exports.spawnmanager.setAutoSpawnCallback(() => {
+    CreateVehicle("akuma", 686.245,
+      577.950,
+      130.461,
+      0,
+      false,
+      false
+    )
     exports.spawnmanager.spawnPlayer({
       x: 686.245,
       y: 577.950,
@@ -12,6 +21,8 @@ on('onClientGameTypeStart', () => {
         ]
       })
     });
+
+    exports.spawnmanager.spawnVehicle()
   });
 
   exports.spawnmanager.setAutoSpawn(true)

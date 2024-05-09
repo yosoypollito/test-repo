@@ -18,6 +18,8 @@ on('onClientGameTypeStart', () => {
   exports.spawnmanager.forceRespawn()
 });
 
+Delay = (ms) => new Promise(res => setTimeout(res, ms));
+
 RegisterCommand('gerogay', async (source, args) => {
   let model = "adder";
   if (args.length > 0) {

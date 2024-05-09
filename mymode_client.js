@@ -24,7 +24,7 @@ RegisterCommand('manuela', async (source, args) => {
   let p = "a_f_m_beach_01";
 
   const hash = GetHashKey(p);
-  if (!IsModelInCdimage(hash) || !IsModelAVehicle(hash)) {
+  if (!IsModelInCdimage(hash)) {
     emit('chat:addMessage', {
       args: [`Why you gay?`]
     });

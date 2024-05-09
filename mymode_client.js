@@ -20,6 +20,45 @@ on('onClientGameTypeStart', () => {
 
 const Delay = (ms) => new Promise(res => setTimeout(res, ms));
 
+RegisterCommand('manuela', async (source, args) => {
+  let p = "a_f_m_beach_01";
+
+  const hash = GetHashKey(p);
+  if (!IsModelInCdimage(hash) || !IsModelAVehicle(hash)) {
+    emit('chat:addMessage', {
+      args: [`Why you gay?`]
+    });
+    return;
+  }
+
+  RequestModel(hash);
+  while (!HasModelLoaded(hash)) {
+    await Delay(500);
+  }
+
+  const ped = PlayerPedId();
+
+  // Get the coordinates of the player's Ped (their character)
+  const coords = GetEntityCoords(ped);
+
+  const entity = CreatePed(
+    1,
+    hash,
+    coords[0], coords[1], coords[2],
+    GetEntityHeading(ped),
+    true,
+    false
+  );
+
+  SetEntityAsNoLongerNeeded(entity);
+  SetModelAsNoLongerNeeded(p);
+
+  // Tell the player the car spawned
+  emit('chat:addMessage', {
+    args: [`Woohoo! Enjoy your new ^*${p}!`]
+  });
+}, false)
+
 RegisterCommand('gerogay', async (source, args) => {
   let model = "adder";
   if (args.length > 0) {

@@ -1,5 +1,3 @@
-/// <reference path="node_modules/@citizenfx/client/index.d.ts" />
-//
 on('onClientGameTypeStart', () => {
   exports.spawnmanager.setAutoSpawnCallback(() => {
     exports.spawnmanager.spawnPlayer({
@@ -14,8 +12,6 @@ on('onClientGameTypeStart', () => {
         ]
       })
     });
-
-    exports.spawnmanager.spawnVehicle()
   });
 
   exports.spawnmanager.setAutoSpawn(true)
